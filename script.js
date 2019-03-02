@@ -54,7 +54,7 @@ xmlhttp.onreadystatechange = function() {
         var obj = JSON.parse(xmlhttp.responseText);
 
         //------------------Aboutus div----------------------------
-        var about = document.createElement('div');
+        var about = document.getElementById('top');
 
         /*------------------contactus div----------------------------*/
         var contact = document.getElementsByClassName('containerform')[0];
@@ -338,15 +338,18 @@ xmlhttp.onreadystatechange = function() {
         //home click
         a1.addEventListener("click", function() {
             if ((row.style.display = "none") ||
-                (details.style.display = "none")) {
+                (details.style.display = "none") || (about.style.display = "none")) {
                 a1.classList.add("current");
                 a2.classList.remove("current");
                 a3.classList.remove("current");
                 a4.classList.remove("current");
                 row.style.display = "block";
-            } else
-                row.style.display = "none";
-            details.style.display = "block";
+                details.style.display = "none";
+                contact.style.display = "none";
+                tablecont.style.display = "none";
+                about.style.display = "none";
+            }
+            details.style.display = "none";
             event.stopPropagation();
 
         });
@@ -354,8 +357,7 @@ xmlhttp.onreadystatechange = function() {
         //about us click
         a2.addEventListener("click", function() {
             if ((row.style.display = "block") || (contact.style.display = "block") || (details.style.display = "block") ||
-                (tablecont.style.display = "block")) {
-
+                (tablecont.style.display = "block") || (about.style.display = "none")) {
                 a2.classList.add("current");
                 a1.classList.remove("current");
                 a3.classList.remove("current");
@@ -367,8 +369,6 @@ xmlhttp.onreadystatechange = function() {
                 about.style.display = "block";
             }
 
-            var aboutdiv = document.getElementById('top');
-            about.appendChild(aboutdiv)
             document.body.appendChild(about);
             console.log(about);
 
@@ -377,10 +377,8 @@ xmlhttp.onreadystatechange = function() {
 
         //contactus click
         a3.addEventListener("click", function() {
-            if ((row.style.display = "block") ||
-                (details.style.display = "block") ||
-                (about.style.display = "block") ||
-                (tablecont.style.display = "block")) {
+            if ((row.style.display = "block") || (details.style.display = "block") ||
+                (tablecont.style.display = "block") || (about.style.display = "block")) {
 
                 a3.classList.add("current");
                 a2.classList.remove("current");
@@ -391,9 +389,8 @@ xmlhttp.onreadystatechange = function() {
                 about.style.display = "none";
                 tablecont.style.display = "none";
                 contact.style.display = "block";
-                document.body.appendChild(contact);
             }
-
+            document.body.appendChild(contact);
             var form = document.forms['form'];
             var fbutton = document.forms['form']['submit'];
             fbutton.addEventListener('click', function(event) {
